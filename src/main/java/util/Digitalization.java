@@ -3,7 +3,7 @@ package util;
 import lombok.SneakyThrows;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Digitalization {
     public static Long getLong(String string){
@@ -15,8 +15,7 @@ public class Digitalization {
     }
 
     @SneakyThrows
-    public static Date getDate(String string){
-        SimpleDateFormat formatForDate = new SimpleDateFormat("dd.MM.yyyy");
-        return formatForDate.parse(string);
+    public static LocalDate getDate(String string){
+        return LocalDate.parse(string);
     }
 }

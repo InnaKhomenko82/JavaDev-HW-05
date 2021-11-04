@@ -20,7 +20,7 @@ public class ConsoleController {
         return command.split("\\|");
     }
 
-    public static String[] readList(){
+    public static String[] readArray(){
         String users = scanner.next();
         return users.split(";");
     }

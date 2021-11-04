@@ -1,9 +1,7 @@
 package service.command;
 
-import models.User;
 import service.UserService;
 
-import java.util.List;
 
 public class HandlerUserPostList extends CommandHandler {
     public HandlerUserPostList(CommandHandler handler) {
@@ -12,6 +10,8 @@ public class HandlerUserPostList extends CommandHandler {
 
     @Override
     protected void apply(String[] command) {
+        String message = new UserService().createUserWithList(UserService.userListBuilder());
+        System.out.println("Created with your list: " + message);
     }
 
     @Override

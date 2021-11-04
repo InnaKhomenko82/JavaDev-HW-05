@@ -6,6 +6,7 @@ import retrofit2.Call;
 import retrofit2.http.*;
 
 import java.util.Map;
+import java.util.Optional;
 
 public interface RetrofitOrder {
 
@@ -19,7 +20,7 @@ public interface RetrofitOrder {
 
     @GET("store/order/{orderId}")
     @Headers({"ContentType-Type: application/json"})
-    Call<Order> getEntity(@Path("orderId") Long orderId);
+    Call<Optional<Order>> getEntity(@Path("orderId") Long orderId);
 
     @DELETE("store/order/{orderId}")
     @Headers({"Content-Type: application/json"})

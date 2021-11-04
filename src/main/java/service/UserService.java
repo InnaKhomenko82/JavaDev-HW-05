@@ -7,6 +7,10 @@ import models.User;
 import util.Digitalization;
 import util.RetrofitConfig;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 public class UserService implements BaseService<User, Long> {
 
     RetrofitUser retrofitUser = BaseConnection.retrofitClient(RetrofitUser.class);
@@ -16,7 +20,21 @@ public class UserService implements BaseService<User, Long> {
         return RetrofitConfig.execute(retrofitUser.addEntity(user));
     }
 
-    public User readByName(String name) {
+    public String createUserWithList(List<User> users){
+        return RetrofitConfig.execute(retrofitUser.createWithList(users)).getMessage();
+    }
+
+    public String createWithArray(User[] users){
+        return RetrofitConfig.execute(retrofitUser.createUserWithArray(users)).getMessage();
+    }
+
+    @Override
+    public Optional<User> readById(Class<User> eClass, Long id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<User> readByName(Class<User> eClass, String name) {
         return RetrofitConfig.execute(retrofitUser.getUserByUserName(name));
     }
 
@@ -40,7 +58,7 @@ public class UserService implements BaseService<User, Long> {
     }
 
     public ApiResponse userLogout(){
-        return (ApiResponse) RetrofitConfig.execute(retrofitUser.userLogout());
+        return RetrofitConfig.execute(retrofitUser.userLogout());
     }
 
     public static User userBuilder(){
@@ -57,5 +75,45 @@ public class UserService implements BaseService<User, Long> {
                 .phone(parameters[6])
                 .userStatus(Digitalization.getInteger(parameters[7]))
                 .build();
+    }
+
+    public static List<User> userListBuilder(){
+        boolean building = true;
+        List<User> users = new ArrayList<>();
+        while(building){
+            User user = userBuilder();
+            System.out.println("Add new user: " + user);
+            users.add(user);
+            System.out.println("Enter any symbol to continue or 'N' to close the list");
+            String[] command = ConsoleController.read();
+            if ("N".equalsIgnoreCase(command[0])) building = false;
+        }
+        return users;
+    }
+
+    public static User[] userArrayBuilder(){
+        System.out.println("Insert array with user details:\n" +
+                "id|userName|firstName|lastName|email|password|phone|userStatus;\n" +
+                "id|userName|firstName|lastName|email|password|phone|userStatus");
+        String[] usersString = ConsoleController.readArray();
+        System.out.println(usersString[0]);
+        System.out.println(usersString[1]);
+        System.out.println(usersString[2]);
+        User[] usersArray = new User[usersString.length];
+        for (int i=0; i<usersString.length; i++) {
+            usersArray[i] = User.builder()
+                    .id(Digitalization.getLong(usersString[0]))
+                    .userName(usersString[1])
+                    .firstName(usersString[2])
+                    .lastName(usersString[3])
+                    .email(usersString[4])
+                    .password(usersString[5])
+                    .phone(usersString[6])
+                    .userStatus(Digitalization.getInteger(usersString[7]))
+                    .build();
+            System.out.println(usersArray[i]);
+        }
+        System.out.println(usersArray);
+        return usersArray;
     }
 }

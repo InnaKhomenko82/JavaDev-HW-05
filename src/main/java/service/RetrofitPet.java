@@ -7,6 +7,7 @@ import retrofit2.Call;
 import retrofit2.http.*;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface RetrofitPet {
 
@@ -30,7 +31,7 @@ public interface RetrofitPet {
 
     @GET("pet/{petId}")
     @Headers({"Content-Type: application/json"})
-    Call<Pet> getEntity(@Path("petId") Long id);
+    Call<Optional<Pet>> getEntity(@Path("petId") Long id);
 
     @FormUrlEncoded
     @POST("pet/{petId}")

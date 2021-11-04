@@ -11,7 +11,6 @@ public class HandlerUserPost extends CommandHandler {
     @Override
     protected void apply(String[] command) {
         User newUser = UserService.userBuilder();
-        System.out.println(newUser);
         new UserService().createEntity(User.class, newUser);
         System.out.println("Created new user:" + newUser);
     }

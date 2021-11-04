@@ -1,6 +1,5 @@
 package service.command;
 
-import models.ApiResponse;
 import models.User;
 import service.UserService;
 

@@ -1,6 +1,5 @@
 package service.command;
 
-import models.User;
 import service.UserService;
 
 public class HandlerUserGetLogin extends CommandHandler {

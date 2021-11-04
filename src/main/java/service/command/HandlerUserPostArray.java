@@ -1,5 +1,11 @@
 package service.command;
 
+import controller.ConsoleController;
+import models.User;
+import service.UserService;
+import util.Digitalization;
+
+
 public class HandlerUserPostArray extends CommandHandler {
     public HandlerUserPostArray(CommandHandler handler) {
         super(handler);
@@ -7,7 +13,8 @@ public class HandlerUserPostArray extends CommandHandler {
 
     @Override
     protected void apply(String[] command) {
-
+        String message = new UserService().createWithArray(UserService.userArrayBuilder());
+        System.out.println("Created with your array: " + message);
     }
 
     @Override

@@ -6,6 +6,7 @@ import retrofit2.Call;
 import retrofit2.http.*;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface RetrofitUser{
 
@@ -15,7 +16,7 @@ public interface RetrofitUser{
 
     @GET("user/{userName}")
     @Headers({"ContentType-Type: application/json"})
-    Call<User> getUserByUserName (@Path("userName") String userName);
+    Call<Optional<User>> getUserByUserName (@Path("userName") String userName);
 
     @PUT("user/{userName}")
     @Headers({"ContentType-Type: application/json"})
@@ -38,7 +39,7 @@ public interface RetrofitUser{
     @Headers({"ContentType-Type: application/json"})
     Call<ApiResponse> createUserWithArray(@Body User[] users);
 
-    @POST("user/createUser")
+    @POST("user")
     @Headers({"ContentType-Type: application/json"})
     Call<User> addEntity(@Body User user);
 }
