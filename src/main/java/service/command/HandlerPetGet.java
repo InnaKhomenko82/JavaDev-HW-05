@@ -14,7 +14,7 @@ public class HandlerPetGet extends CommandHandler {
     @Override
     protected void apply(String[] command) {
         System.out.println("Get pet: " + command[2]);
-        Optional<Pet> pet = new PetService().readById(Pet.class, Digitalization.getLong(command[2]));
+        Optional<Pet> pet = Optional.ofNullable(new PetService().readById(Pet.class, Digitalization.getLong(command[2])));
         System.out.println(pet.isPresent()? pet.get(): "No such entity((");
     }
 

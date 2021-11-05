@@ -20,7 +20,7 @@ public interface RetrofitOrder {
 
     @GET("store/order/{orderId}")
     @Headers({"ContentType-Type: application/json"})
-    Call<Optional<Order>> getEntity(@Path("orderId") Long orderId);
+    Call<Order> getEntity(@Path("orderId") Long orderId);
 
     @DELETE("store/order/{orderId}")
     @Headers({"Content-Type: application/json"})

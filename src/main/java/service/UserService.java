@@ -9,7 +9,6 @@ import util.RetrofitConfig;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class UserService implements BaseService<User, Long> {
 
@@ -29,12 +28,12 @@ public class UserService implements BaseService<User, Long> {
     }
 
     @Override
-    public Optional<User> readById(Class<User> eClass, Long id) {
-        return Optional.empty();
+    public User readById(Class<User> eClass, Long id) {
+        return null;
     }
 
     @Override
-    public Optional<User> readByName(Class<User> eClass, String name) {
+    public User readByName(Class<User> eClass, String name) {
         return RetrofitConfig.execute(retrofitUser.getUserByUserName(name));
     }
 
@@ -96,24 +95,20 @@ public class UserService implements BaseService<User, Long> {
                 "id|userName|firstName|lastName|email|password|phone|userStatus;\n" +
                 "id|userName|firstName|lastName|email|password|phone|userStatus");
         String[] usersString = ConsoleController.readArray();
-        System.out.println(usersString[0]);
-        System.out.println(usersString[1]);
-        System.out.println(usersString[2]);
         User[] usersArray = new User[usersString.length];
         for (int i=0; i<usersString.length; i++) {
+            String[] parameters = usersString[i].split("\\|");
             usersArray[i] = User.builder()
-                    .id(Digitalization.getLong(usersString[0]))
-                    .userName(usersString[1])
-                    .firstName(usersString[2])
-                    .lastName(usersString[3])
-                    .email(usersString[4])
-                    .password(usersString[5])
-                    .phone(usersString[6])
-                    .userStatus(Digitalization.getInteger(usersString[7]))
+                    .id(Digitalization.getLong(parameters[0]))
+                    .userName(parameters[1])
+                    .firstName(parameters[2])
+                    .lastName(parameters[3])
+                    .email(parameters[4])
+                    .password(parameters[5])
+                    .phone(parameters[6])
+                    .userStatus(Digitalization.getInteger(parameters[7]))
                     .build();
-            System.out.println(usersArray[i]);
         }
-        System.out.println(usersArray);
         return usersArray;
     }
 }

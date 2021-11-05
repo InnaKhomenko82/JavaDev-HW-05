@@ -14,7 +14,7 @@ public class HandlerPetGetByStatus extends CommandHandler {
     @Override
     protected void apply(String[] command) {
         System.out.println("Get pet by status: " + command[3]);
-        Optional<Pet> pet = new PetService().readByName(Pet.class, command[2]);
+        Optional<Pet> pet = Optional.ofNullable(new PetService().readByName(Pet.class, command[2]));
         System.out.println(pet.isPresent()? pet.get(): "No such entity((");
     }
 

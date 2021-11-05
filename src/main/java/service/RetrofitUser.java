@@ -16,7 +16,7 @@ public interface RetrofitUser{
 
     @GET("user/{userName}")
     @Headers({"ContentType-Type: application/json"})
-    Call<Optional<User>> getUserByUserName (@Path("userName") String userName);
+    Call<User> getUserByUserName (@Path("userName") String userName);
 
     @PUT("user/{userName}")
     @Headers({"ContentType-Type: application/json"})

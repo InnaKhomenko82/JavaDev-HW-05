@@ -19,13 +19,13 @@ public class PetService implements BaseService<Pet, Long>{
     }
 
     @Override
-    public Optional<Pet> readById(Class<Pet> eClass, Long aLong) {
+    public Pet readById(Class<Pet> eClass, Long aLong) {
         return RetrofitConfig.execute(retrofitPet.getEntity(aLong));
     }
 
     @Override
-    public Optional<Pet> readByName(Class<Pet> eClass, String userName) {
-        return Optional.empty();
+    public Pet readByName(Class<Pet> eClass, String userName) {
+        return null;
     }
 
     @Override

@@ -14,7 +14,7 @@ public class HandlerStoreGetByOrder extends CommandHandler {
     @Override
     protected void apply(String[] command) {
         System.out.println("Get order: " + command[2]);
-        Optional<Order> order = new OrderService().readById(Order.class, Digitalization.getLong(command[2]));
+        Optional<Order> order = Optional.ofNullable(new OrderService().readById(Order.class, Digitalization.getLong(command[2])));
         System.out.println(order.isPresent()? order.get(): "No such entity((");
     }
 

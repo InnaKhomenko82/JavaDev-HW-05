@@ -18,13 +18,13 @@ public class OrderService implements BaseService<Order, Long>{
     }
 
     @Override
-    public Optional<Order> readById(Class<Order> eClass, Long aLong) {
+    public Order readById(Class<Order> eClass, Long aLong) {
         return RetrofitConfig.execute(retrofitOrder.getEntity(aLong));
     }
 
     @Override
-    public Optional<Order> readByName(Class<Order> eClass, String userName) {
-        return Optional.empty();
+    public Order readByName(Class<Order> eClass, String userName) {
+        return null;
     }
 
     @Override

@@ -13,7 +13,7 @@ public class HandlerUserGet extends CommandHandler {
     @Override
     protected void apply(String[] command) {
         System.out.println("Get user: " + command[2]);
-        Optional<User> user = new UserService().readByName(User.class, command[2]);
+        Optional<User> user = Optional.ofNullable(new UserService().readByName(User.class, command[2]));
         System.out.println(user.isPresent()? user.get(): "No such entity((");
     }
 
